@@ -4,6 +4,10 @@
 
 import Foundation
 
+enum ErrorValidation: Error {
+	case defaultError
+}
+
 public class MoviesClient {
 	let apiKey: String
 	let baseUrl: URL
@@ -11,17 +15,33 @@ public class MoviesClient {
 	public init(apiKey: String) {
 		self.apiKey = apiKey
 		
-		guard let url = URL(string: "https://api.themoviedb.org/3/") else {
+		guard let url = URL(string: Constants.url) else {
 			preconditionFailure("Unable to build URL")
 		}
 		self.baseUrl = url
 	}
 	
 	public func popularMovies() async throws -> [MovieSummary] {
-		fatalError("Missing Implementation")
+		guard let url = URL(string: "\(baseUrl)popular?api_key=\(apiKey)") else {
+			throw ErrorValidation.defaultError
+		}
+		
+		// Use the async variant of URLSession to fetch data
+		let (data, _) = try await URLSession.shared.data(from: url)
+		
+		// Parse the JSON data
+		let movieResult = try JSONDecoder().decode(MoviesGallery.self, from: data)
+		return movieResult.results
 	}
 	
 	public func movieDetails(_ id: Int) async throws -> MovieDetails {
-		fatalError("Missing Implementation")
+		guard let url = URL(string: "\(baseUrl)\(id)?api_key=\(apiKey)") else {
+			throw ErrorValidation.defaultError
+		}
+		
+		let (data, _) = try await URLSession.shared.data(from: url)
+		
+		let movieDetails = try JSONDecoder().decode(MovieDetails.self, from: data)
+		return movieDetails
 	}
 }
