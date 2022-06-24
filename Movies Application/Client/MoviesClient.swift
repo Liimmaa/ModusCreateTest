@@ -15,14 +15,14 @@ public class MoviesClient {
 	public init(apiKey: String) {
 		self.apiKey = apiKey
 		
-		guard let url = URL(string: "https://api.themoviedb.org/3/") else {
+		guard let url = URL(string: Constants.url) else {
 			preconditionFailure("Unable to build URL")
 		}
 		self.baseUrl = url
 	}
 	
 	public func popularMovies() async throws -> [MovieSummary] {
-		guard let url = URL(string: "\(baseUrl)movie/popular?api_key=\(apiKey)&language=en-US&page=1") else {
+		guard let url = URL(string: "\(baseUrl)popular?api_key=\(apiKey)") else {
 			throw ErrorValidation.defaultError
 		}
 		
@@ -35,7 +35,7 @@ public class MoviesClient {
 	}
 	
 	public func movieDetails(_ id: Int) async throws -> MovieDetails {
-		guard let url = URL(string: "\(baseUrl)movie/\(id)?api_key=\(apiKey)&language=en-US") else {
+		guard let url = URL(string: "\(baseUrl)\(id)?api_key=\(apiKey)") else {
 			throw ErrorValidation.defaultError
 		}
 		

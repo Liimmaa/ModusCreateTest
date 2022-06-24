@@ -5,10 +5,11 @@
 import UIKit
 
 class PopularMoviesViewController: UICollectionViewController {
-	
-	var summary: [MovieSummary]?
+	var viewModel: MoviesGalleryViewModel
 	
 	init() {
+		let viewModel = MoviesGalleryViewModel()
+		self.viewModel = viewModel
 		let layout = UICollectionViewFlowLayout()
 		super.init(collectionViewLayout: layout)
 	}
@@ -18,8 +19,6 @@ class PopularMoviesViewController: UICollectionViewController {
 		navigationItem.title = Constants.title
 		
 		setupCollectionView()
-		
-		getPopularMovies()
 	}
 	
 	private func setupCollectionView() {
@@ -36,17 +35,6 @@ class PopularMoviesViewController: UICollectionViewController {
 		collectionView.dataSource = self
 	}
 	
-	func getPopularMovies() {
-		Task {
-				do {
-					let movies = try await MoviesClient(apiKey: Constants.apiKey).popularMovies()
-					summary = movies
-				} catch {
-						print("Request failed with error: \(error)")
-				}
-		}
-	}
-	
 	@available(*, unavailable)
 	required init?(coder _: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
@@ -60,13 +48,13 @@ extension PopularMoviesViewController {
 		}
 	
 		override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-			return 20
+			return viewModel.summary.count
 		}
 		
 		override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.reuseIdentifier, for: indexPath) as! PopularMovieCell
 			// Configure the cell
-			cell.summary = summary?[indexPath.row]
+			cell.summary = viewModel.summary[indexPath.row]
 			return cell
 		}
 }

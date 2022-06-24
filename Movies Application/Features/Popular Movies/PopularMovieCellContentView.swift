@@ -22,7 +22,7 @@ extension PopularMovieCell {
 					})
 					.overlay(
 						summary.isPopular
-						? Circle().stroke(Color.purple, style: StrokeStyle(lineWidth: 5, dash: [15]))
+						? Circle().stroke(Color.purple, style: StrokeStyle(lineWidth: 5, dash: [10]))
 						: nil
 					)
 					

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7A591F07286632DA00BA2F8F /* MoviesGalleryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A591F06286632DA00BA2F8F /* MoviesGalleryViewModel.swift */; };
 		7A80530C2866001D002C89C9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A80530B2866001C002C89C9 /* Constants.swift */; };
 		98E6C3CB2680FA0800536045 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E6C3CA2680FA0800536045 /* AppDelegate.swift */; };
 		98E6C3D42680FA0900536045 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 98E6C3D32680FA0900536045 /* Assets.xcassets */; };
@@ -43,6 +44,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7A591F06286632DA00BA2F8F /* MoviesGalleryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesGalleryViewModel.swift; sourceTree = "<group>"; };
 		7A80530B2866001C002C89C9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		98C0903A26FB6E97005450CF /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		98C0903C26FB6E97005450CF /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -71,6 +73,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7A591F052866328800BA2F8F /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				7A591F06286632DA00BA2F8F /* MoviesGalleryViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		7A80530D28660062002C89C9 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +127,7 @@
 				7A80530D28660062002C89C9 /* Common */,
 				EA977F7D279AE8EE00D76F98 /* Models */,
 				EA074C0426EA7487008E16E0 /* Features */,
+				7A591F052866328800BA2F8F /* ViewModels */,
 				98E6C3DF2680FA0F00536045 /* Resources */,
 			);
 			path = "Movies Application";
@@ -253,6 +264,7 @@
 				EA59CD04270F3FA500C69D6C /* PopularMovieCell.swift in Sources */,
 				EA59CD06270F479700C69D6C /* PopularMovieCellContentView.swift in Sources */,
 				EA977F7A279AE54500D76F98 /* MovieSummary.swift in Sources */,
+				7A591F07286632DA00BA2F8F /* MoviesGalleryViewModel.swift in Sources */,
 				EA977F7B279AE54500D76F98 /* MoviesClient.swift in Sources */,
 				7A80530C2866001D002C89C9 /* Constants.swift in Sources */,
 			);
