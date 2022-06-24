@@ -7,6 +7,9 @@ import UIKit
 private let reuseIdentifier = "Cell"
 
 class PopularMoviesViewController: UICollectionViewController {
+	
+	var summary: [MovieSummary]?
+	
 	init() {
 		let layout = UICollectionViewFlowLayout()
 		super.init(collectionViewLayout: layout)
@@ -15,6 +18,19 @@ class PopularMoviesViewController: UICollectionViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		navigationItem.title = "Popular"
+		
+		getPopularMovies()
+	}
+	
+	func getPopularMovies() {
+		Task {
+				do {
+					let movies = try await MoviesClient(apiKey: Constants.apiKey).popularMovies()
+					summary = movies
+				} catch {
+						print("Request failed with error: \(error)")
+				}
+		}
 	}
 	
 	@available(*, unavailable)

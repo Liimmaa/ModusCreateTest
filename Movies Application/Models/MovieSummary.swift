@@ -4,6 +4,10 @@
 
 import Foundation
 
+public struct MoviesGallery: Codable {
+		let results: [MovieSummary]
+}
+
 public struct MovieSummary: Codable {
 	public let id: Int
 	public let overview: String
